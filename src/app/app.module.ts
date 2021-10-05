@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BookFormTemplateComponent } from './book-form-template/book-form-template.component';
 import { BookFormReactiveComponent } from './book-form-reactive/book-form-reactive.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { BookFormReactiveComponent } from './book-form-reactive/book-form-reacti
     BookFormTemplateComponent,
     BookFormReactiveComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
