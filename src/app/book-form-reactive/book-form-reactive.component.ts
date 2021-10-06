@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book-form-reactive',
@@ -6,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-form-reactive.component.css'],
 })
 export class BookFormReactiveComponent implements OnInit {
-  tags: string[] = ['best-seller', 'featured', 'new'];
+  reactiveForm: FormGroup;
+  formHasBeenSubmitted = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reactiveForm = new FormGroup({
+      title: new FormControl(null, Validators.required),
+      author: new FormControl(null, Validators.required),
+      genre: new FormControl('mystery', Validators.required),
+      isBestSeller: new FormControl(null),
+    });
+  }
+
+  onFormSubmit() {
+    // console.log('Submitted!', this.reactiveForm);
+
+    // Set boolean variable "formHasBeenSubmitted" to true
+    this.formHasBeenSubmitted = true;
+
+    // Reset the form
+    this.reactiveForm.reset();
+  }
 }
