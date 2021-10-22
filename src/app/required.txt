@@ -1,6 +1,4 @@
-In the app.component.html file, create a container div with a row inside that renders both of our components side-by-side.
-Inside the "BookFormTemplateComponent": Create a template-driven form that, when submitted, displays all the relevant data below the form.
-Title, Author, and Genre should all be required inputs that display an error message with a red border when touched and invalid.
+
 Set 'mystery' to be the default value on the genre select box.
 Use two-way-binding to display the name of the book after the word "Submit" on the submit button.
 Display the title, author, and genre below the form when a user clicks "Submit". (Also, reset the form.)

@@ -1,27 +1,48 @@
 <!-- ~~~ !TEMPLATE DRIVEN APPROACH! ~~~ -->
-<form>
+<form (ngSubmit)='onSubmitForm(formGroup)' #formGroup='ngForm'>
   <div id="book-data">
     <!-- Title -->
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" id="title" name="title" class="form-control" />
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="form-control"
+        ngModel
+        required
+        #title='ngModel'
+        />
+        <span
+        style="color: red;"
+        *ngIf="!title.valid && title.touched"
+        >Please enter a valid title</span>
     </div>
 
     <!-- Author -->
     <div class="form-group">
       <label for="author">Author</label>
-      <input type="text" id="author" name="author" class="form-control" />
+      <input type="text" id="author" name="author" class="form-control" ngModel
+      required
+      #author='ngModel'
+      />
+      <span style="color: red;" *ngIf="!author.valid && author.touched"
+      >Please enter a valid author</span>
     </div>
 
     <!-- Genre -->
     <div class="form-group">
       <label for="genre">Genre</label>
-      <select id="genre" name="genre" class="form-control">
-        <option value="mystery">Mystery</option>
+      <select id="genre" name="genre" class="form-control" ngModel
+      required
+      #genre='ngModel'>
+        <option value="mystery" selected>Mystery</option>
         <option value="self-help">Self-Help</option>
         <option value="fantasy">Fantasy</option>
         <option value="science-fiction">Science Fiction</option>
       </select>
+      <span style="color: red;" *ngIf="!genre.valid && genre.touched"
+      >Please select a valid genre</span>
     </div>
 
     <!-- isBestSeller -->
@@ -29,15 +50,24 @@
       <p>Is this book a best seller?</p>
 
       <!-- True -->
-      <input type="radio" id="true" name="isBestSeller" value="true" />
+      <input type="radio" id="true" name="isBestSeller" value="true" ngModel/>
       <label for="true" class="mr-3">True</label>
 
       <!-- False -->
-      <input type="radio" id="false" name="isBestSeller" value="false" />
+      <input type="radio" id="false" name="isBestSeller" value="false" ngModel/>
       <label for="false">False</label>
     </div>
 
     <!-- Submit Button -->
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit {{ title.value }}</button>
   </div>
 </form>
+
+<div class="container" *ngIf='formSubmitted'>
+  <ul class="list-group">
+    <li class="list-group-item">{{ formResults.title }}</li>
+    <li class="list-group-item">{{ formResults.author }}</li>
+    <li class="list-group-item">{{ formResults.genre }}</li>
+    <li class="list-group-item">{{ formResults.isBestSeller }}</li>
+  </ul>
+</div>
